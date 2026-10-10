@@ -1,23 +1,1131 @@
 
-html, body {
-    height: 100%;
+/* ==================================================
+   1. CONFIGURAÇÕES GERAIS
+   ================================================== */
+
+:root {
+    --minurl-primary: #4361f5;
+    --minurl-primary-dark: #304be0;
+    --minurl-primary-light: #edf1ff;
+    --minurl-navy: #172337;
+    --minurl-text: #19263b;
+    --minurl-muted: #62799e;
+    --minurl-border: #dce5ff;
+    --minurl-background: #f7f9fe;
+    --minurl-white: #ffffff;
+    --minurl-shadow: 0 18px 50px rgba(38, 70, 140, 0.08);
 }
 
-body {
-    padding-top: 60px;
-    padding-bottom: 40px;
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body.minurl-body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
+
+    color: var(--minurl-text);
+    background: radial-gradient(
+        ellipse at 50% 15%,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(247, 249, 254, 0.95) 70%
+    );
+
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
+.minurl-main {
+    flex: 1;
+    padding-top: 48px;
+    padding-bottom: 28px;
 }
 
-body > .container {
-    flex: 1 0 auto;
+
+/* ==================================================
+   2. BARRA DE NAVEGAÇÃO
+   ================================================== */
+
+.minurl-navbar {
+    min-height: 74px;
+    background: var(--minurl-navy);
+    box-shadow: 0 5px 20px rgba(16, 30, 54, 0.12);
+}
+
+.navbar-container {
+    min-height: 74px;
+}
+
+.minurl-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-right: 50px;
+    padding: 0;
+
+    color: var(--minurl-white) !important;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #6b83ff;
+    font-size: 31px;
+    line-height: 1;
+    filter: saturate(1.15);
+}
+
+.brand-name > span,
+.footer-brand > span {
+    color: #7188ff;
+}
+
+.minurl-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.minurl-navbar .nav-link {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    min-height: 74px;
+    padding: 0 13px !important;
+
+    color: #e0e6f2;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.minurl-navbar .nav-link:hover,
+.minurl-navbar .nav-link:focus {
+    color: #ffffff;
+}
+
+.minurl-navbar .nav-link::after {
+    position: absolute;
+    right: 12px;
+    bottom: 0;
+    left: 12px;
+
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #4165ff,
+        #8a72ff
+    );
+
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.2s ease;
+}
+
+.minurl-navbar .nav-link:hover::after,
+.minurl-navbar .nav-link.nav-link-active::after {
+    transform: scaleX(1);
+}
+
+.minurl-navbar .nav-link-active {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.nav-icon {
+    font-size: 17px;
+    line-height: 1;
+}
+
+
+/* ==================================================
+   3. HERO — TÍTULO E DESCRIÇÃO
+   ================================================== */
+
+.hero {
+    margin-bottom: 38px;
+    padding-top: 12px;
+}
+
+.hero-copy {
+    padding-right: 30px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 17px;
+    padding: 7px 15px;
+
+    border-radius: 30px;
+    color: var(--minurl-primary);
+    background: #e8edff;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+.hero-title {
+    max-width: 650px;
+    margin: 0 0 20px;
+
+    color: var(--minurl-text);
+    font-size: clamp(2.7rem, 4vw, 4.15rem);
+    font-weight: 850;
+    letter-spacing: -2.8px;
+    line-height: 1.08;
+}
+
+.hero-title span {
+    display: block;
+    color: var(--minurl-primary);
+}
+
+.hero-description {
+    max-width: 570px;
+    margin: 0;
+
+    color: var(--minurl-muted);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   4. ILUSTRAÇÃO DO NAVEGADOR
+   ================================================== */
+
+.link-illustration {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 260px;
+    padding: 18px 12px;
+}
+
+.illustration-orbit {
+    position: absolute;
+    z-index: 0;
+
+    width: 82%;
+    height: 68%;
+
+    border-radius: 45% 55% 55% 45%;
+
+    background: linear-gradient(
+        135deg,
+        rgba(80, 112, 255, 0.10),
+        rgba(125, 157, 255, 0.03)
+    );
+
+    transform: rotate(-9deg);
+}
+
+.browser-card {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 530px;
+    padding: 17px 21px 22px;
+
+    border: 1px solid var(--minurl-border);
+    border-radius: 19px;
+
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 45px rgba(53, 82, 160, 0.12);
+}
+
+
+/* Bolinhas coloridas do navegador */
+
+.browser-dots {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.browser-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.browser-dots span:nth-child(1) {
+    background: #ff7075;
+}
+
+.browser-dots span:nth-child(2) {
+    background: #ffc44e;
+}
+
+.browser-dots span:nth-child(3) {
+    background: #39bc89;
+}
+
+
+/* URL original */
+
+.fake-url {
+    overflow: hidden;
+
+    padding: 17px 16px;
+
+    border: 1px solid var(--minurl-border);
+    border-radius: 12px;
+
+    color: var(--minurl-muted);
+    background: #ffffff;
+
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   5. SETA CURVA E URL ENCURTADA
+   ================================================== */
+
+/*
+   A linha posiciona a seta à esquerda do link curto.
+   O alinhamento à direita mantém o conjunto compacto.
+*/
+
+.conversion-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    min-width: 0;
+    margin-top: 14px;
+}
+
+
+/* Desenho vetorial da seta */
+
+.conversion-arrow {
+    display: block;
+    flex: 0 0 64px;
+
+    width: 64px;
+    height: 44px;
+
+    overflow: visible;
+
+    color: #4b63ff;
+}
+
+
+/* Botão ilustrativo do link encurtado */
+
+.short-url {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 16px 22px;
+
+    border-radius: 50px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        115deg,
+        #5069ff,
+        #3e58ed
+    );
+
+    box-shadow: 0 10px 23px rgba(67, 97, 245, 0.22);
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.short-url-icon {
+    flex-shrink: 0;
+    font-size: 17px;
+}
+
+
+/* ==================================================
+   6. CARTÃO DE ENCURTAMENTO
+   ================================================== */
+
+.shortener-card {
+    padding: 29px 34px 30px;
+
+    border: 1px solid #e3eaff;
+    border-radius: 17px;
+
+    background: var(--minurl-white);
+    box-shadow: var(--minurl-shadow);
+}
+
+.shortener-heading {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+
+    margin-bottom: 22px;
+}
+
+.shortener-heading-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 17px;
+
+    color: var(--minurl-primary);
+    background: linear-gradient(
+        135deg,
+        #edf1ff,
+        #e3e9ff
+    );
+
+    font-size: 30px;
+}
+
+.shortener-heading h2 {
+    margin: 0 0 6px;
+
+    color: var(--minurl-text);
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.shortener-heading p {
+    margin: 0;
+
+    color: var(--minurl-muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   7. FORMULÁRIO — CAMPO E BOTÃO
+   ================================================== */
+
+.shortener-form {
+    display: flex;
+    align-items: stretch;
+    gap: 18px;
+}
+
+.url-input-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    min-width: 0;
+    min-height: 63px;
+    padding: 0 18px;
+
+    border: 1px solid #cfdbff;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.url-input-wrapper:focus-within {
+    border-color: var(--minurl-primary);
+    box-shadow: 0 0 0 4px rgba(67, 97, 245, 0.10);
+}
+
+.input-link-icon {
+    flex-shrink: 0;
+    margin-right: 13px;
+    font-size: 19px;
+}
+
+.url-input-wrapper input {
+    width: 100%;
+    min-width: 0;
+    height: 60px;
+    padding: 0;
+
+    border: 0;
+    outline: none;
+
+    color: var(--minurl-text);
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.url-input-wrapper input::placeholder {
+    color: #8a9ab7;
+    opacity: 1;
+}
+
+.url-input-wrapper input:focus {
+    box-shadow: none;
+}
+
+
+/* Botão real do formulário */
+
+.shortener-button {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-width: 150px;
+    min-height: 63px;
+    padding: 0 24px;
+
+    border: 0;
+    border-radius: 12px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        115deg,
+        #4b63fa,
+        #3d59ef
+    );
+
+    box-shadow: 0 7px 16px rgba(67, 97, 245, 0.16);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.shortener-button:hover {
+    background: var(--minurl-primary-dark);
+    box-shadow: 0 10px 22px rgba(67, 97, 245, 0.25);
+    transform: translateY(-1px);
+}
+
+.shortener-button:active {
+    transform: translateY(0);
+}
+
+.button-link-icon {
+    font-size: 17px;
+}
+
+.minurl-alert {
+    margin-bottom: 24px;
+    border-radius: 12px;
+}
+
+
+/* ==================================================
+   8. BENEFÍCIOS
+   ================================================== */
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    margin-top: 27px;
+    padding-top: 22px;
+
+    border-top: 1px solid #edf1fa;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    min-width: 0;
+    padding: 0 24px;
+}
+
+.benefit:first-child {
+    padding-left: 8px;
+}
+
+.benefit + .benefit {
+    border-left: 1px solid #e2e9fa;
+}
+
+.benefit-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    color: var(--minurl-primary);
+    background: #edf1ff;
+
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.benefit-text {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
+
+.benefit strong {
+    color: var(--minurl-text);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.benefit span {
+    color: var(--minurl-muted);
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   9. RODAPÉ
+   ================================================== */
+
+.minurl-footer {
+    padding: 12px 0 24px;
+    text-align: center;
+}
+
+.footer-brand {
+    color: var(--minurl-primary);
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-brand:hover {
+    color: var(--minurl-primary-dark);
+}
+
+.minurl-footer p {
+    margin: 9px 0 0;
+    color: var(--minurl-muted);
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   10. TABLETS
+   ================================================== */
+
+@media (max-width: 991.98px) {
+
+    .minurl-main {
+        padding-top: 32px;
+    }
+
+    .hero {
+        margin-bottom: 26px;
+    }
+
+    .hero-copy {
+        padding-right: 12px;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        letter-spacing: -1.8px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .link-illustration {
+        min-height: 230px;
+    }
+
+    .shortener-card {
+        padding: 26px;
+    }
+
+    .benefit {
+        gap: 10px;
+        padding: 0 14px;
+    }
+
+    .benefit-icon {
+        width: 49px;
+        height: 49px;
+        font-size: 25px;
+    }
+}
+
+
+/* ==================================================
+   11. CELULARES
+   ================================================== */
+
+@media (max-width: 767.98px) {
+
+    /* Menu */
+
+    .minurl-navbar,
+    .navbar-container {
+        min-height: 66px;
+    }
+
+    .minurl-brand {
+        margin-right: 0;
+        font-size: 24px;
+    }
+
+    .brand-icon {
+        font-size: 27px;
+    }
+
+    .minurl-navbar .navbar-collapse {
+        padding: 8px 0 15px;
+    }
+
+    .minurl-nav {
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .minurl-navbar .nav-link {
+        min-height: 45px;
+        padding: 10px 5px !important;
+    }
+
+    .minurl-navbar .nav-link::after {
+        right: auto;
+        left: 5px;
+        width: 45px;
+    }
+
+
+    /* Conteúdo principal */
+
+    .minurl-main {
+        padding-top: 24px;
+        padding-bottom: 20px;
+    }
+
+    .hero {
+        row-gap: 10px !important;
+        margin-bottom: 22px;
+        padding-top: 5px;
+    }
+
+    .hero-badge {
+        margin-bottom: 13px;
+        font-size: 10px;
+    }
+
+    .hero-title {
+        margin-bottom: 14px;
+        font-size: clamp(2.3rem, 10vw, 3.2rem);
+        letter-spacing: -1.7px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* Ilustração */
+
+    .link-illustration {
+        min-height: 205px;
+        padding: 8px 0;
+    }
+
+    .browser-card {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .browser-dots {
+        margin-bottom: 14px;
+    }
+
+    .fake-url {
+        padding: 13px 11px;
+        font-size: 11px;
+    }
+
+    .conversion-row {
+        gap: 7px;
+        margin-top: 12px;
+    }
+
+    .conversion-arrow {
+        flex-basis: 52px;
+        width: 52px;
+        height: 38px;
+    }
+
+    .short-url {
+        gap: 7px;
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    .short-url-icon {
+        font-size: 14px;
+    }
+
+
+    /* Cartão de encurtamento */
+
+    .shortener-card {
+        padding: 21px 18px;
+        border-radius: 15px;
+    }
+
+    .shortener-heading {
+        gap: 13px;
+        margin-bottom: 19px;
+    }
+
+    .shortener-heading-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        font-size: 24px;
+    }
+
+    .shortener-heading h2 {
+        font-size: 20px;
+    }
+
+    .shortener-heading p {
+        font-size: 13px;
+    }
+
+
+    /* Formulário empilhado */
+
+    .shortener-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .url-input-wrapper {
+        min-height: 57px;
+        padding: 0 13px;
+    }
+
+    .url-input-wrapper input {
+        height: 55px;
+        font-size: 14px;
+    }
+
+    .shortener-button {
+        width: 100%;
+        min-height: 55px;
+    }
+
+
+    /* Benefícios em coluna */
+
+    .benefits {
+        grid-template-columns: 1fr;
+        gap: 0;
+
+        margin-top: 23px;
+        padding-top: 10px;
+    }
+
+    .benefit,
+    .benefit:first-child {
+        padding: 13px 2px;
+    }
+
+    .benefit + .benefit {
+        border-top: 1px solid #edf1fa;
+        border-left: 0;
+    }
+
+    .benefit-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 24px;
+    }
+
+    .minurl-footer {
+        padding-bottom: 20px;
+    }
+}
+
+
+/* ==================================================
+   12. CELULARES MUITO ESTREITOS
+   ================================================== */
+
+@media (max-width: 360px) {
+
+    .hero-title {
+        font-size: 2.1rem;
+    }
+
+    .shortener-card {
+        padding: 17px 13px;
+    }
+
+    .shortener-heading h2 {
+        font-size: 18px;
+    }
+
+    .conversion-row {
+        gap: 4px;
+    }
+
+    .conversion-arrow {
+        flex-basis: 42px;
+        width: 42px;
+        height: 34px;
+    }
+
+    .short-url {
+        gap: 5px;
+        padding: 11px 9px;
+        font-size: 11px;
+    }
+}
+
+
+/* ==================================================
+   13. ACESSIBILIDADE
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   Opções adicionais do encurtador
+   ========================================= */
+
+.shortener-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid #edf1fa;
+}
+
+.option-button {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    padding: 15px 17px;
+
+    border: 1px solid #e1e8fa;
+    border-radius: 13px;
+
+    background: #ffffff;
+    color: var(--minurl-text);
+    text-align: left;
+
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.option-button:hover,
+.option-button:focus-visible {
+    border-color: #bdcbff;
+    background: #f9faff;
+    box-shadow: 0 4px 15px rgba(67, 97, 245, 0.07);
+}
+
+.option-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+    color: var(--minurl-primary);
+    background: var(--minurl-primary-light);
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.qr-icon {
+    font-size: 31px;
+}
+
+.option-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.option-content strong {
+    color: var(--minurl-text);
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.option-content small {
+    color: var(--minurl-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.option-chevron {
+    flex-shrink: 0;
+    color: var(--minurl-muted);
+    font-size: 22px;
+    transition: transform 0.2s ease;
+}
+
+.expiration-toggle[aria-expanded="true"] .option-chevron {
+    transform: rotate(180deg);
+}
+
+/* Campo de data */
+
+.expiration-option {
+    min-width: 0;
+}
+
+.expiration-panel {
+    margin-top: 10px;
+    padding: 16px;
+
+    border: 1px solid #e1e8fa;
+    border-radius: 12px;
+    background: #f9faff;
+}
+
+.expiration-panel[hidden] {
+    display: none;
+}
+
+.expiration-panel label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--minurl-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.expiration-date {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+
+    border: 1px solid #cfdbff;
+    border-radius: 9px;
+
+    color: var(--minurl-text);
+    background: #ffffff;
+
+    font: inherit;
+    font-size: 13px;
+}
+
+.expiration-date:focus {
+    border-color: var(--minurl-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 245, 0.10);
+}
+
+.expiration-panel > small {
+    display: block;
+    margin-top: 8px;
+    color: var(--minurl-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Celulares */
+
+@media (max-width: 767.98px) {
+    .shortener-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 20px;
+        padding-top: 18px;
+    }
+
+    .option-button {
+        padding: 13px;
+    }
+
+    .option-icon {
+        width: 43px;
+        height: 43px;
+    }
+}
+

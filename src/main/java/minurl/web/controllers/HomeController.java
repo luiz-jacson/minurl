@@ -54,10 +54,10 @@ public class HomeController {
         try {
             CreateShortUrlCmd cmd = new CreateShortUrlCmd(form.originalUrl());
             var shortUrlDTO = shortUrlService.createShortUrl(cmd);
-            redirectAttributes.addFlashAttribute("successMessage", "Short URL created successfully "+
+            redirectAttributes.addFlashAttribute("successMessage", "URL encurtada com sucesso: "+
                     properties.baseUrl()+"/s/"+shortUrlDTO.shortKey());
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Failed to create short URL");
+            redirectAttributes.addFlashAttribute("errorMessage", "Falha ao encurtar URL");
 
         }
         return "redirect:/";

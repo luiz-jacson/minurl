@@ -1,40 +1,170 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="pt-BR"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>MinUrl - Encurte seus links</title>
 </head>
+
 <body>
 <div layout:fragment="content">
-    <div class="jumbotron bg-light p-5 rounded-3 my-4">
-        <p class="lead">A simple URL shortener service. Create short, easy-to-share links.</p>
-    </div>
 
-    <div class="card mt-4">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Create a Short URL</h5>
+    <section class="hero row align-items-center g-4">
+        <div class="col-lg-6 hero-copy">
+
+            <span class="hero-badge">
+                SIMPLES, RÁPIDO E GRATUITO
+            </span>
+
+            <h1 class="hero-title">
+                Encurte seus links
+                <span>com facilidade</span>
+            </h1>
+
+            <p class="hero-description">
+                Transforme URLs longas em links curtos, simples e fáceis
+                de compartilhar. Rápido, seguro e gratuito.
+            </p>
         </div>
-        <div class="card-body">
-            <form th:action="@{/short-urls}" method="post"
-                  th:object="${createShortUrlForm}">
-                <div class="mb-3">
-                    <label for="originalUrl" class="form-label">Original URL</label>
-                    <input type="text" class="form-control" id="originalUrl"
+
+        <div class="col-lg-6">
+            <div class="link-illustration">
+                <div class="illustration-orbit"></div>
+
+                <div class="browser-card">
+                    <div class="browser-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="fake-url">
+                        https://www.exemplo.com/um-link-muito-longo
+                    </div>
+
+                    <div class="conversion-row">
+
+                        <svg class="conversion-arrow"
+                             viewBox="0 0 64 44"
+                             fill="none"
+                             aria-hidden="true">
+
+                            <path d="M 7 3 C 10 20, 21 30, 44 30"
+                                  stroke="currentColor"
+                                  stroke-width="3.5"
+                                  stroke-linecap="round"/>
+
+                            <path d="M 35 21 L 45 30 L 36 37"
+                                  stroke="currentColor"
+                                  stroke-width="3.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+
+                        </svg>
+
+                        <div class="short-url">
+                            <span class="short-url-icon">🔗</span>
+                            <span>minurl.com/abc123</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shortener-card">
+
+        <div class="shortener-heading">
+
+            <div>
+                <h2>Encurtar um link</h2>
+                <p>Cole a URL que deseja encurtar e clique no botão.</p>
+            </div>
+        </div>
+
+        <form th:action="@{/short-urls}"
+              method="post"
+              th:object="${createShortUrlForm}">
+
+            <div class="shortener-form">
+                <div class="url-input-wrapper">
+
+                    <input type="url"
+                           id="originalUrl"
                            th:field="*{originalUrl}"
-                           placeholder="https://example.com/my-long-url">
-                    <div class="text-danger"
-                         th:if="${#fields.hasErrors('originalUrl')}"
-                         th:errors="*{originalUrl}"></div>
+                           placeholder="Cole a URL aqui..."
+                           aria-label="URL original"
+                           required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Shorten URL</button>
-            </form>
+                <button type="submit" class="shortener-button">
+                    <span class="button-link-icon" aria-hidden="true">🔗</span>
+                    Encurtar
+                </button>
+            </div>
+
+            <div class="text-danger small mt-2"
+                 th:if="${#fields.hasErrors('originalUrl')}"
+                 th:errors="*{originalUrl}">
+            </div>
+        </form>
+
+        <div class="shortener-options">
+
+            <!-- Opção de QR Code -->
+            <button type="button"
+                    class="option-button qr-option-button"
+                    id="generateQrButton"
+                    title="Gere um QR Code após encurtar sua URL">
+
+                <span class="option-icon qr-icon" aria-hidden="true">▦</span>
+
+                <span class="option-content">
+            <strong>Gerar QR Code</strong>
+        </span>
+            </button>
+
+            <div class="expiration-option">
+
+                <button type="button"
+                        class="option-button expiration-toggle"
+                        id="toggleExpirationButton"
+                        aria-expanded="false"
+                        aria-controls="expirationPanel">
+
+                    <span class="option-icon" aria-hidden="true">◷</span>
+
+                    <span class="option-content">
+                <strong>Definir expiração</strong>
+            </span>
+
+                </button>
+
+                <div class="expiration-panel"
+                     id="expirationPanel"
+                     hidden>
+
+                    <label for="expiresAt">Data de expiração</label>
+
+                    <input type="date"
+                           id="expiresAt"
+                           name="expiresAt"
+                           class="expiration-date">
+
+                    <small>Seu link poderá expirar na data escolhida.</small>
+                </div>
+
+            </div>
+
         </div>
-    </div>
+
+    </section>
+
 </div>
 </body>
 </html>
