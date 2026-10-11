@@ -12,7 +12,8 @@
 
     <link rel="stylesheet"
           th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
-
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css}">
     <link rel="stylesheet"
           th:href="@{/css/styles.css}">
 </head>
@@ -23,7 +24,7 @@
     <div class="container navbar-container">
 
         <a class="navbar-brand minurl-brand" th:href="@{/}">
-            <span class="brand-icon" aria-hidden="true">🔗</span>
+            <i class="bi bi-link-45deg brand-icon" aria-hidden="true"></i>
             <span class="brand-name">Min<span>Url</span></span>
         </a>
 
@@ -41,21 +42,21 @@
 
                 <li class="nav-item">
                     <a class="nav-link nav-link-active" th:href="@{/}">
-                        <span class="nav-icon" aria-hidden="true">⌂</span>
+                        <i class="bi bi-house nav-icon"></i>
                         Início
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/admin}">
-                        <span class="nav-icon" aria-hidden="true">🛡</span>
+                        <i class="bi bi-graph-up nav-icon"></i>
                         Estatísticas
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/about}">
-                        <span class="nav-icon" aria-hidden="true">▤</span>
+                        <i class="bi bi-archive nav-icon"></i>
                         Sobre
                     </a>
                 </li>
