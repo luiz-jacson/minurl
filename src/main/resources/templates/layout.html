@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MinUrl | Encurtador de URLs</title>
+    <title>MinUrl - Encurte seus links</title>
 
     <link rel="stylesheet"
           th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
@@ -41,21 +41,21 @@
             <ul class="navbar-nav minurl-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link nav-link-active" th:href="@{/}">
+                    <a class="nav-link" th:classappend="${activeHome == true ? 'nav-link-active' : ''}" th:href="@{/}">
                         <i class="bi bi-house nav-icon"></i>
                         Início
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin}">
+                    <a class="nav-link" th:classappend="${activeStats == true ? 'nav-link-active' : ''}" th:href="@{/stats}">
                         <i class="bi bi-graph-up nav-icon"></i>
                         Estatísticas
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/about}">
+                    <a class="nav-link" th:classappend="${activeAbout == true ? 'nav-link-active' : ''}" th:href="@{/about}">
                         <i class="bi bi-archive nav-icon"></i>
                         Sobre
                     </a>
@@ -97,14 +97,41 @@
 
 </main>
 
+
 <footer class="minurl-footer">
-    <div class="container text-center">
-        <a class="footer-brand" th:href="@{/}">
-            Min<span>Url</span>
-        </a>
+    <div class="container">
+
+        <div class="footer-top">
+            <div class="footer-brand-group">
+                <a class="footer-brand" th:href="@{/}">
+                    Min<span>Url</span>
+                </a>
+            </div>
+
+            <a href="https://github.com/luiz-jacson/minurl"
+               class="footer-github"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="bi bi-github" aria-hidden="true"></i>
+                <span>Código-fonte</span>
+                <i class="bi bi-arrow-up-right"
+                   aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © <span th:text="${#dates.year(#dates.createNow())}">2026</span>
+                <strong>MinUrl</strong>
+                <span class="footer-separator">·</span>
+                Projeto de portfólio
+            </p>
+        </div>
 
     </div>
 </footer>
+
 
 <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 

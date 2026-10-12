@@ -633,28 +633,161 @@ body.minurl-body {
    9. RODAPÉ
    ================================================== */
 
+
+/* =========================================
+   Rodapé MinUrl
+   ========================================= */
+
 .minurl-footer {
-    padding: 12px 0 24px;
-    text-align: center;
+    margin-top: 28px;
+    padding: 27px 0 18px;
+    border-top: 1px solid #e6ebf5;
+    background: rgba(255, 255, 255, 0.65);
 }
 
-.footer-brand {
+.footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+}
+
+.footer-brand-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.minurl-footer .footer-brand {
     color: var(--minurl-primary);
-    font-size: 15px;
-    font-weight: 700;
-
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    text-decoration: none;
 }
 
-.footer-brand:hover {
+.minurl-footer .footer-brand > span {
+    color: #7188ff;
+}
+
+.minurl-footer .footer-brand:hover {
     color: var(--minurl-primary-dark);
 }
 
-.minurl-footer p {
-    margin: 9px 0 0;
+.minurl-footer .footer-tagline {
+    margin: 0;
     color: var(--minurl-muted);
     font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-github {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex-shrink: 0;
+    padding: 11px 15px;
+
+    border: 1px solid #e0e6f2;
+    border-radius: 10px;
+
+    color: var(--minurl-text);
+    background: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-github > .bi-github {
+    font-size: 18px;
+}
+
+.footer-github:hover {
+    border-color: #c4d0e8;
+    color: var(--minurl-text);
+    background: #f7f9fe;
+    transform: translateY(-1px);
+}
+
+.footer-bottom {
+    padding-top: 16px;
+    border-top: 1px solid #edf1f8;
+}
+
+.minurl-footer .footer-bottom p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin: 0;
+    color: var(--minurl-muted);
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.footer-bottom strong {
+    color: var(--minurl-text);
+    font-weight: 700;
+}
+
+.footer-separator {
+    padding: 0 2px;
+    color: #a0aec5;
+}
+
+
+/* Rodapé em celulares */
+
+@media (max-width: 575.98px) {
+    .minurl-footer {
+        margin-top: 20px;
+        padding-top: 22px;
+    }
+
+    .footer-top {
+        align-items: flex-start;
+        gap: 16px;
+        padding-bottom: 18px;
+    }
+
+    .minurl-footer .footer-brand {
+        font-size: 21px;
+    }
+
+    .minurl-footer .footer-tagline {
+        max-width: 190px;
+        font-size: 12px;
+    }
+
+    .footer-github {
+        gap: 7px;
+        padding: 10px 11px;
+        font-size: 12px;
+    }
+
+    .footer-github > .bi-github {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 
@@ -1128,4 +1261,318 @@ body.minurl-body {
         height: 43px;
     }
 }
+
+
+/* =========================================
+   Página Sobre
+   ========================================= */
+
+.about-hero {
+    max-width: 850px;
+    margin: 0 auto 48px;
+    padding: 38px 0 12px;
+    text-align: center;
+}
+
+.about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    color: var(--minurl-primary);
+    background: #e8edff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+.about-hero h1 {
+    margin: 0 0 20px;
+    color: var(--minurl-text);
+    font-size: clamp(2.4rem, 5vw, 3.7rem);
+    font-weight: 850;
+    letter-spacing: -2px;
+}
+
+.about-hero h1 span {
+    color: var(--minurl-primary);
+}
+
+.about-intro {
+    max-width: 710px;
+    margin: 0 auto 26px;
+    color: var(--minurl-muted);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.about-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 21px;
+    border-radius: 11px;
+    color: #ffffff;
+    background: var(--minurl-primary);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.about-primary-button:hover {
+    color: #ffffff;
+    background: var(--minurl-primary-dark);
+    transform: translateY(-1px);
+}
+
+.about-section {
+    margin-bottom: 42px;
+}
+
+.about-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.about-section-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    color: var(--minurl-primary);
+    background: var(--minurl-primary-light);
+    font-size: 24px;
+}
+
+.about-section-heading h2 {
+    margin: 0 0 5px;
+    color: var(--minurl-text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.about-section-heading p {
+    margin: 0;
+    color: var(--minurl-muted);
+    font-size: 14px;
+}
+
+.about-content-card,
+.about-goals-card {
+    padding: 27px 30px;
+    border: 1px solid #e3eaff;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: var(--minurl-shadow);
+}
+
+.about-content-card p {
+    margin: 0 0 16px;
+    color: var(--minurl-muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.about-content-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tecnologias */
+
+.about-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.about-tech-card {
+    min-width: 0;
+    padding: 23px 22px;
+    border: 1px solid #e3eaff;
+    border-radius: 15px;
+    background: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-tech-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--minurl-shadow);
+}
+
+.about-tech-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 17px;
+    border-radius: 12px;
+    color: var(--minurl-primary);
+    background: var(--minurl-primary-light);
+    font-size: 24px;
+}
+
+.about-tech-card h3 {
+    margin: 0 0 9px;
+    color: var(--minurl-text);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.about-tech-card p {
+    margin: 0;
+    color: var(--minurl-muted);
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+/* Objetivos */
+
+.about-goal {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 17px 0;
+}
+
+.about-goal + .about-goal {
+    border-top: 1px solid #edf1fa;
+}
+
+.about-goal:first-child {
+    padding-top: 0;
+}
+
+.about-goal:last-child {
+    padding-bottom: 0;
+}
+
+.about-goal-check {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--minurl-primary);
+    background: var(--minurl-primary-light);
+    font-size: 20px;
+}
+
+.about-goal h3 {
+    margin: 2px 0 6px;
+    color: var(--minurl-text);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.about-goal p {
+    margin: 0;
+    color: var(--minurl-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Encerramento */
+
+.about-closing {
+    margin-top: 12px;
+    padding: 34px 24px;
+    border: 1px solid #e3eaff;
+    border-radius: 17px;
+    background: linear-gradient(135deg, #ffffff, #f0f3ff);
+    text-align: center;
+}
+
+.about-closing > i {
+    display: inline-flex;
+    margin-bottom: 12px;
+    color: var(--minurl-primary);
+    font-size: 38px;
+}
+
+.about-closing h2 {
+    margin: 0 0 12px;
+    color: var(--minurl-text);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.about-closing p {
+    max-width: 600px;
+    margin: 0 auto 22px;
+    color: var(--minurl-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Responsividade */
+
+@media (max-width: 767.98px) {
+    .about-hero {
+        margin-bottom: 35px;
+        padding-top: 15px;
+    }
+
+    .about-hero h1 {
+        font-size: 2.5rem;
+        letter-spacing: -1.4px;
+    }
+
+    .about-intro {
+        font-size: 15px;
+    }
+
+    .about-section {
+        margin-bottom: 32px;
+    }
+
+    .about-section-heading h2 {
+        font-size: 20px;
+    }
+
+    .about-content-card,
+    .about-goals-card {
+        padding: 21px 19px;
+    }
+
+    .about-tech-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .about-tech-card {
+        padding: 18px 15px;
+    }
+
+    .about-closing {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .about-tech-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-github-main-icon {
+    display: inline-flex;
+    margin-bottom: 12px;
+    color: var(--minurl-primary);
+    font-size: 38px;
+}
+
+
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o MinUrl</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <section class="about-hero">
+        <h1>
+            Conheça o <span>MinUrl</span>
+        </h1>
+    </section>
+
+    <section class="about-section">
+        <div class="about-section-heading">
+            <span class="about-section-icon">
+                <i class="bi bi-lightbulb" aria-hidden="true"></i>
+            </span>
+
+            <div>
+                <h2>Por que o MinUrl?</h2>
+            </div>
+        </div>
+
+        <div class="about-content-card">
+            <p>
+                O MinUrl é um projeto de estudo e portfólio,
+                com o objetivo de aplicar conhecimentos de desenvolvimento
+                backend e frontend em uma aplicação funcional.
+            </p>
+
+            <p>
+                Além da interface, o projeto envolve a criação de endpoints,
+                o processamento de formulários, a persistência de dados
+                e a configuração de um ambiente de execução.
+            </p>
+
+            <p>
+                A proposta é evoluir a aplicação gradualmente, priorizando
+                código organizado, validações adequadas e uma experiência
+                de uso simples e intuitiva.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-section-heading">
+            <span class="about-section-icon">
+                <i class="bi bi-stack" aria-hidden="true"></i>
+            </span>
+
+            <div>
+                <h2>Tecnologias utilizadas</h2>
+            </div>
+        </div>
+
+        <div class="about-tech-grid">
+
+            <article class="about-tech-card">
+                <i class="bi bi-cup-hot about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>Java</h3>
+
+                <p>
+                    Linguagem utilizada na implementação da lógica
+                    da aplicação.
+                </p>
+            </article>
+
+            <article class="about-tech-card">
+                <i class="bi bi-boxes about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>Spring Boot</h3>
+
+                <p>
+                    Framework utilizado para estruturar a aplicação
+                    web e seus endpoints.
+                </p>
+            </article>
+
+            <article class="about-tech-card">
+                <i class="bi bi-window about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>Thymeleaf</h3>
+
+                <p>
+                    Integração entre os templates HTML e os dados
+                    disponibilizados pelo servidor.
+                </p>
+            </article>
+
+            <article class="about-tech-card">
+                <i class="bi bi-palette about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>Bootstrap</h3>
+
+                <p>
+                    Componentes, estilos responsivos e recursos
+                    visuais da interface.
+                </p>
+            </article>
+
+            <article class="about-tech-card">
+                <i class="bi bi-database about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>PostgreSQL</h3>
+
+                <p>
+                    Banco de dados relacional utilizado para
+                    persistência das informações.
+                </p>
+            </article>
+
+            <article class="about-tech-card">
+                <i class="bi bi-git about-tech-icon"
+                   aria-hidden="true"></i>
+
+                <h3>Git</h3>
+
+                <p>
+                    Controle de versão para acompanhar a evolução
+                    do código-fonte.
+                </p>
+            </article>
+
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

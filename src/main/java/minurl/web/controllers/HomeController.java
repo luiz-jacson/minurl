@@ -36,6 +36,7 @@ public class HomeController {
         model.addAttribute("shortUrls", shortUrls);
         model.addAttribute("baseUrl", properties.baseUrl());
         model.addAttribute("createShortUrlForm", new CreateShortUrlForm(""));
+        model.addAttribute("activeHome", true);
         return "index";
     }
 
@@ -72,6 +73,12 @@ public class HomeController {
         ShortUrlDTO shortUrlDto = shortUrlDtoOptional.get();
         return "redirect:"+shortUrlDto.originalUrl();
 
+    }
+
+    @GetMapping("/about")
+    public String about(Model model){
+        model.addAttribute("activeAbout", true);
+        return "about";
     }
 
 
