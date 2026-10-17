@@ -3,7 +3,7 @@ package minurl.web.controllers;
 import jakarta.validation.Valid;
 import minurl.ApplicationProperties;
 import minurl.domain.exceptions.ShortUrlNotFoundException;
-import minurl.domain.models.CreateShortUrlCmd;
+import minurl.domain.models.CreateShortUrl;
 import minurl.domain.models.ShortUrlDTO;
 import minurl.domain.service.ShortUrlService;
 import minurl.web.dto.CreateShortUrlForm;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,7 @@ public class HomeController {
         }
 
         try {
-            CreateShortUrlCmd cmd = new CreateShortUrlCmd(form.originalUrl());
+            CreateShortUrl cmd = new CreateShortUrl(form.originalUrl());
             var shortUrlDTO = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "URL encurtada com sucesso: "+
                     properties.baseUrl()+"/s/"+shortUrlDTO.shortKey());

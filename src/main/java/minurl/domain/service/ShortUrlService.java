@@ -2,7 +2,7 @@ package minurl.domain.service;
 
 import minurl.ApplicationProperties;
 import minurl.domain.entities.ShortUrl;
-import minurl.domain.models.CreateShortUrlCmd;
+import minurl.domain.models.CreateShortUrl;
 import minurl.domain.models.ShortUrlDTO;
 import minurl.domain.repositories.ShortUrlRepository;
 import minurl.domain.util.Base62;
@@ -49,7 +49,7 @@ public class ShortUrlService {
     }
 
     @Transactional
-    public ShortUrlDTO createShortUrl(CreateShortUrlCmd cmd) {
+    public ShortUrlDTO createShortUrl(CreateShortUrl cmd) {
         var shortUrl = new ShortUrl();
         shortUrl.setOriginalUrl(cmd.originalUrl());
         shortUrl.setCreatedBy(null);
