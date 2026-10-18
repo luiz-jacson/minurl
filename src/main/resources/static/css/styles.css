@@ -1575,4 +1575,241 @@ body.minurl-body {
 }
 
 
+/* =========================================
+   Página de erro 404
+   ========================================= */
+
+.error-page {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 530px;
+    padding: 50px 20px 45px;
+
+    text-align: center;
+}
+
+
+/* Ilustração */
+
+.error-visual {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 240px;
+    height: 155px;
+    margin-bottom: 14px;
+}
+
+.error-orbit {
+    position: absolute;
+
+    width: 200px;
+    height: 125px;
+
+    border-radius: 48% 52% 43% 57%;
+    background: linear-gradient(
+        135deg,
+        rgba(67, 97, 245, 0.13),
+        rgba(113, 136, 255, 0.035)
+    );
+
+    transform: rotate(-9deg);
+}
+
+.error-icon {
+    position: absolute;
+    top: 12px;
+    left: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 76px;
+    height: 76px;
+
+    border: 1px solid #dce5ff;
+    border-radius: 22px;
+
+    color: var(--minurl-primary);
+    background: #ffffff;
+
+    box-shadow: 0 12px 32px rgba(53, 82, 160, 0.12);
+
+    font-size: 43px;
+
+    transform: rotate(-12deg);
+}
+
+.error-number {
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+
+    color: var(--minurl-primary);
+    font-size: 87px;
+    font-weight: 900;
+    letter-spacing: -7px;
+    line-height: 1;
+
+    text-shadow: 0 7px 25px rgba(67, 97, 245, 0.10);
+}
+
+
+/* Identificação do erro */
+
+.error-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 18px;
+    padding: 8px 14px;
+
+    border: 1px solid #e0e7ff;
+    border-radius: 30px;
+
+    color: var(--minurl-primary);
+    background: #edf1ff;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.65px;
+}
+
+
+/* Título e descrição */
+
+.error-page h1 {
+    max-width: 650px;
+    margin: 0 0 15px;
+
+    color: var(--minurl-text);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 850;
+    letter-spacing: -1.2px;
+    line-height: 1.2;
+}
+
+.error-description {
+    max-width: 490px;
+    margin: 0;
+
+    color: var(--minurl-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* Botão para retornar */
+
+.error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 27px;
+}
+
+.error-home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 49px;
+    padding: 13px 23px;
+
+    border: 0;
+    border-radius: 11px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        115deg,
+        #4b63fa,
+        #3d59ef
+    );
+
+    box-shadow: 0 8px 18px rgba(67, 97, 245, 0.18);
+
+    font-size: 14px;
+    font-weight: 750;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.error-home-button:hover {
+    color: #ffffff;
+    background: var(--minurl-primary-dark);
+    box-shadow: 0 11px 24px rgba(67, 97, 245, 0.25);
+    transform: translateY(-2px);
+}
+
+.error-home-button:focus-visible {
+    outline: 3px solid rgba(67, 97, 245, 0.3);
+    outline-offset: 4px;
+}
+
+
+/* Sugestão abaixo do botão */
+
+.error-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    margin: 26px 0 0;
+
+    color: var(--minurl-muted);
+    font-size: 13px;
+}
+
+.error-hint i {
+    color: var(--minurl-primary);
+    font-size: 16px;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 575.98px) {
+    .error-page {
+        min-height: 460px;
+        padding: 35px 12px;
+    }
+
+    .error-visual {
+        transform: scale(0.85);
+        margin-bottom: 4px;
+    }
+
+    .error-page h1 {
+        font-size: 1.9rem;
+        letter-spacing: -0.7px;
+    }
+
+    .error-description {
+        font-size: 14px;
+    }
+
+    .error-hint {
+        font-size: 12px;
+    }
+}
+
+
+
 

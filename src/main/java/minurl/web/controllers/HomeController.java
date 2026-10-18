@@ -69,7 +69,7 @@ public class HomeController {
     public String redirectToOriginalUrl(@PathVariable String shortKey){
         Optional<ShortUrlDTO> shortUrlDtoOptional = shortUrlService.findByShortKey(shortKey);
         if(shortUrlDtoOptional.isEmpty()) {
-            throw new ShortUrlNotFoundException("Invalid short key: "+ shortKey);
+            return "redirect:/error/404.html";
         }
         ShortUrlDTO shortUrlDto = shortUrlDtoOptional.get();
         return "redirect:"+shortUrlDto.originalUrl();
