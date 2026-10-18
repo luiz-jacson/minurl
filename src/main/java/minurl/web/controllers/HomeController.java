@@ -101,5 +101,10 @@ public class HomeController {
         return "about";
     }
 
+    @GetMapping("/keepalive")
+    public String keepalive(){
+        return "";
+    }
+
 
 }
