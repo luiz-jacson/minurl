@@ -36,7 +36,7 @@ public class HomeController {
         List<ShortUrlDTO> shortUrls = shortUrlService.findAllPublicShortUrls();
         model.addAttribute("shortUrls", shortUrls);
         model.addAttribute("baseUrl", properties.baseUrl());
-        model.addAttribute("createShortUrlForm", new CreateShortUrlForm(""));
+        model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false));
         model.addAttribute("activeHome", true);
         return "index";
     }
@@ -56,8 +56,8 @@ public class HomeController {
         try {
             CreateShortUrl cmd = new CreateShortUrl(form.originalUrl());
             var shortUrlDTO = shortUrlService.createShortUrl(cmd);
-            redirectAttributes.addFlashAttribute("successMessage", "URL encurtada com sucesso: "+
-                    properties.baseUrl()+"/s/"+shortUrlDTO.shortKey());
+            redirectAttributes.addFlashAttribute("shortUrl", properties.baseUrl()+"/s/"+shortUrlDTO.shortKey());
+            redirectAttributes.addFlashAttribute("showQrCode", form.generateQrCode());
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Falha ao encurtar URL");
 

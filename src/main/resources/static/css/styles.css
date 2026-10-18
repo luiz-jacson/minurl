@@ -1811,5 +1811,322 @@ body.minurl-body {
 }
 
 
+/* =========================================
+   Modal de resultado do encurtamento
+   ========================================= */
+
+.result-modal {
+    overflow: hidden;
+    border: 1px solid #e3eaff;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 25px 80px rgba(20, 37, 75, 0.18);
+}
+
+.result-modal-header {
+    min-height: 48px;
+    padding: 15px 17px 0;
+    border: 0;
+}
+
+.result-modal-body {
+    padding: 4px 32px 30px;
+    text-align: center;
+}
+
+.result-success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 61px;
+    height: 61px;
+    margin: 0 auto 2px;
+    border-radius: 50%;
+    color: #16865d;
+    background: #e6f8f0;
+    font-size: 34px;
+}
+
+.result-badge {
+    display: inline-block;
+    margin-bottom: 2px;
+    color: #16865d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.9px;
+}
+
+.result-modal-body h2 {
+    margin: 0 0 10px;
+    color: var(--minurl-text);
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -0.8px;
+}
+
+.result-description {
+    max-width: 390px;
+    margin: 0 auto 23px;
+    color: var(--minurl-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* Área do link */
+
+.result-url-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #dce5ff;
+    border-radius: 13px;
+    background: #f8faff;
+    text-align: left;
+}
+
+.result-url-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.result-url-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--minurl-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.65px;
+}
+
+.result-short-url {
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--minurl-primary);
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.6;
+    text-decoration: none;
+}
+
+.result-short-url:hover {
+    color: var(--minurl-primary-dark);
+    text-decoration: underline;
+}
+
+.result-copy-icon-button {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #dce5ff;
+    border-radius: 10px;
+    color: var(--minurl-primary);
+    background: #ffffff;
+    font-size: 19px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.result-copy-icon-button:hover {
+    background: #edf1ff;
+}
+
+.copy-feedback {
+    min-height: 18px;
+    margin: 7px 0 0;
+    color: #16865d;
+    font-size: 12px;
+    text-align: left;
+}
+
+
+/* Seção do QR Code */
+
+.result-qr-section {
+    margin-top: 24px;
+    padding: 22px 15px;
+    border: 1px solid #e3eaff;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.result-qr-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 17px;
+    text-align: left;
+}
+
+.result-qr-heading > i {
+    color: var(--minurl-primary);
+    font-size: 30px;
+}
+
+.result-qr-heading h3 {
+    margin: 0 0 4px;
+    color: var(--minurl-text);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.result-qr-heading p {
+    margin: 0;
+    color: var(--minurl-muted);
+    font-size: 12px;
+}
+
+.result-qr-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 180px;
+    min-height: 180px;
+    max-width: 100%;
+    margin: 0 auto 18px;
+    padding: 12px;
+    border: 1px solid #e7ecf5;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+/* A biblioteca gera uma imagem e/ou canvas dentro do contêiner. */
+.result-qr-image img,
+.result-qr-image canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.result-download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dce5ff;
+    border-radius: 10px;
+    color: var(--minurl-primary);
+    background: #f8faff;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.result-download-button:hover {
+    background: #edf1ff;
+}
+
+
+/* Botão de conclusão */
+
+.result-done-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px 18px;
+    border: 0;
+    border-radius: 11px;
+    color: #ffffff;
+    background: linear-gradient(115deg, #4b63fa, #3d59ef);
+    font-size: 14px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.result-done-button:hover {
+    background: var(--minurl-primary-dark);
+}
+
+
+/* Opção de QR Code selecionada no formulário */
+
+.option-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.qr-option-button {
+    position: relative;
+    cursor: pointer;
+}
+
+.option-checkmark {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #cdd8f0;
+    border-radius: 7px;
+    color: transparent;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.option-checkbox:checked + .option-icon {
+    color: #ffffff;
+    background: var(--minurl-primary);
+}
+
+.option-checkbox:checked ~ .option-checkmark {
+    border-color: var(--minurl-primary);
+    color: #ffffff;
+    background: var(--minurl-primary);
+}
+
+.option-checkbox:focus-visible ~ .option-content {
+    outline: 2px solid var(--minurl-primary);
+    outline-offset: 4px;
+}
+
+
+/* Modal em celulares */
+
+@media (max-width: 575.98px) {
+    .result-modal {
+        border-radius: 18px;
+    }
+
+    .result-modal-body {
+        padding: 4px 19px 23px;
+    }
+
+    .result-modal-body h2 {
+        font-size: 23px;
+    }
+
+    .result-description {
+        font-size: 13px;
+    }
+
+    .result-url-box {
+        padding: 12px;
+    }
+
+    .result-short-url {
+        font-size: 12px;
+    }
+}
+.qr-option-button {
+    margin-bottom: 0;
+}
+
+
 
 

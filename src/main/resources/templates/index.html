@@ -113,56 +113,171 @@
                  th:if="${#fields.hasErrors('originalUrl')}"
                  th:errors="*{originalUrl}">
             </div>
-        </form>
 
-        <div class="shortener-options">
+            <div class="shortener-options">
 
-            <button type="button"
-                    class="option-button qr-option-button"
-                    id="generateQrButton"
-                    title="Gere um QR Code após encurtar sua URL">
+                <label class="option-button qr-option-button"
+                       for="generateQrCode">
 
-                <i class="bi bi-qr-code option-icon qr-icon"  aria-hidden="true"></i>
-                <span class="option-content">
-            <strong>Gerar QR Code</strong>
-        </span>
-            </button>
+                    <input type="checkbox"
+                           class="option-checkbox"
+                           id="generateQrCode"
+                           name="generateQrCode"
+                           th:field="*{generateQrCode}">
 
-            <div class="expiration-option">
-
-                <button type="button"
-                        class="option-button expiration-toggle"
-                        id="toggleExpirationButton"
-                        aria-expanded="false"
-                        aria-controls="expirationPanel">
-
-                    <i class="bi bi-clock option-icon"></i>
+                    <span class="option-icon qr-icon">
+                        <i class="bi bi-qr-code" aria-hidden="true"></i>
+                    </span>
 
                     <span class="option-content">
+                        <strong>Gerar QR Code</strong>
+                    </span>
+
+                    <span class="option-checkmark" aria-hidden="true">
+                        <i class="bi bi-check2"></i>
+                    </span>
+
+                </label>
+
+                <div class="expiration-option">
+
+                    <button type="button"
+                            class="option-button expiration-toggle"
+                            id="toggleExpirationButton"
+                            aria-expanded="false"
+                            aria-controls="expirationPanel">
+
+            <span class="option-icon">
+                <i class="bi bi-calendar-event" aria-hidden="true"></i>
+            </span>
+
+                        <span class="option-content">
                 <strong>Definir expiração</strong>
             </span>
 
-                </button>
+                        <span class="option-chevron" aria-hidden="true">
+                <i class="bi bi-chevron-down"></i>
+            </span>
 
-                <div class="expiration-panel"
-                     id="expirationPanel"
-                     hidden>
+                    </button>
 
-                    <label for="expiresAt">Data de expiração</label>
+                    <div class="expiration-panel"
+                         id="expirationPanel"
+                         hidden>
 
-                    <input type="date"
-                           id="expiresAt"
-                           name="expiresAt"
-                           class="expiration-date">
+                        <label for="expiresAt">Data de expiração</label>
 
-                    <small>Seu link poderá expirar na data escolhida.</small>
+                        <input type="date"
+                               id="expiresAt"
+                               name="expiresAt"
+                               class="expiration-date">
+
+                        <small>Seu link poderá expirar na data escolhida.</small>
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
+        </form>
 
     </section>
+
+    <div class="modal fade"
+         id="shortUrlResultModal"
+         tabindex="-1"
+         aria-labelledby="shortUrlResultTitle"
+         aria-hidden="true"
+         th:if="${shortUrl != null}"
+         th:attr="data-short-url=${shortUrl}">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content result-modal">
+
+                <div class="modal-header result-modal-header">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Fechar"></button>
+                </div>
+
+                <div class="modal-body result-modal-body">
+
+                    <div class="result-success-icon">
+                        <i class="bi bi-check2" aria-hidden="true"></i>
+                    </div>
+
+                    <span class="result-badge"></span>
+
+                    <h2 id="shortUrlResultTitle">
+                        Seu link está pronto!
+                    </h2>
+
+                    <div class="result-url-box">
+
+                        <div class="result-url-content">
+                        <span class="result-url-label">
+                            SEU LINK ENCURTADO
+                        </span>
+
+                            <a class="result-short-url"
+                               id="resultShortUrl"
+                               th:href="${shortUrl}"
+                               th:text="${shortUrl}"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                https://minurl.com/s/abc123
+                            </a>
+                        </div>
+
+                        <button type="button"
+                                class="result-copy-icon-button"
+                                id="copyShortUrlButton"
+                                th:attr="data-copy-url=${shortUrl}"
+                                title="Copiar link"
+                                aria-label="Copiar link encurtado">
+
+                            <i class="bi bi-copy" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
+
+                    <p class="copy-feedback"
+                       id="copyFeedback"
+                       role="status"
+                       aria-live="polite"></p>
+
+                    <div class="result-qr-section"
+                         th:if="${showQrCode}">
+
+
+                        <div class="result-qr-image"
+                             id="resultQrCode"
+                             role="img"
+                             aria-label="QR Code do link encurtado">
+                        </div>
+
+                        <button type="button"
+                                class="result-download-button"
+                                id="downloadQrCodeButton">
+
+                            <i class="bi bi-download" aria-hidden="true"></i>
+                            Baixar QR Code (PNG)
+                        </button>
+
+                    </div>
+
+                    <button type="button"
+                            class="result-done-button"
+                            data-bs-dismiss="modal">
+                        Concluído
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 </body>
