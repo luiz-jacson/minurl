@@ -7,6 +7,7 @@ import minurl.domain.models.CreateShortUrl;
 import minurl.domain.models.ShortUrlDTO;
 import minurl.domain.service.ShortUrlService;
 import minurl.web.dto.CreateShortUrlForm;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -102,8 +103,8 @@ public class HomeController {
     }
 
     @GetMapping("/keepalive")
-    public String keepalive(){
-        return "";
+    public ResponseEntity<String> keepalive() {
+        return ResponseEntity.ok("MinUrl is alive");
     }
 
 
