@@ -1,15 +1,17 @@
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const modalElement = document.getElementById("shortUrlResultModal");
+document.addEventListener("DOMContentLoaded", function () {
 
-        if (!modalElement) {
-            return;
-        }
 
+
+    const modalElement = document.getElementById("shortUrlResultModal");
+
+    if (modalElement) {
         const shortUrl = modalElement.dataset.shortUrl;
 
         if (window.bootstrap) {
-            bootstrap.Modal.getOrCreateInstance(modalElement).show();
+            bootstrap.Modal
+                .getOrCreateInstance(modalElement)
+                .show();
         }
 
         const copyButton = document.getElementById("copyShortUrlButton");
@@ -42,13 +44,20 @@
                 try {
                     await copyText(copyButton.dataset.copyUrl || shortUrl);
 
-                    copyFeedback.textContent = "Link copiado com sucesso!";
+                    if (copyFeedback) {
+                        copyFeedback.textContent =
+                            "Link copiado com sucesso!";
+                    }
+
                     copyButton.innerHTML =
                         '<i class="bi bi-check2" aria-hidden="true"></i>';
+
                     copyButton.setAttribute("aria-label", "Link copiado");
                 } catch (error) {
-                    copyFeedback.textContent =
-                        "Não foi possível copiar automaticamente. Selecione o link e copie manualmente.";
+                    if (copyFeedback) {
+                        copyFeedback.textContent =
+                            "Não foi possível copiar automaticamente. Selecione o link e copie manualmente.";
+                    }
                 }
             });
         }
@@ -66,7 +75,8 @@
             });
         }
 
-        const downloadButton = document.getElementById("downloadQrCodeButton");
+        const downloadButton =
+            document.getElementById("downloadQrCodeButton");
 
         if (downloadButton && qrContainer) {
             downloadButton.addEventListener("click", function () {
@@ -90,4 +100,32 @@
                 downloadLink.remove();
             });
         }
-    });
+    }
+
+
+
+    const toggleButton =
+        document.getElementById("toggleExpirationButton");
+
+    const expirationPanel =
+        document.getElementById("expirationPanel");
+
+    if (toggleButton && expirationPanel) {
+        toggleButton.addEventListener("click", function () {
+            const isExpanded =
+                toggleButton.getAttribute("aria-expanded") === "true";
+
+            toggleButton.setAttribute(
+                "aria-expanded",
+                String(!isExpanded)
+            );
+
+            expirationPanel.hidden = isExpanded;
+
+            if (!isExpanded) {
+                expirationPanel.querySelector("input")?.focus();
+            }
+        });
+    }
+
+});

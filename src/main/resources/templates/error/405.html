@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada | MinUrl</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+  <section class="error-page">
+
+    <div class="error-visual">
+
+      <div class="error-icon">
+        <i class="bi bi-link-45deg" aria-hidden="true"></i>
+      </div>
+
+      <span class="error-number">404</span>
+
+    </div>
+
+    <h1>Ops! Parece que você se perdeu.</h1>
+
+    <p class="error-description">
+      Não encontramos a página que você está procurando.
+      Talvez o endereço esteja incorreto ou essa página
+      não exista mais.
+    </p>
+
+    <div class="error-actions">
+      <a th:href="@{ / }" class="error-home-button">
+        <i class="bi bi-house-door" aria-hidden="true"></i>
+        Voltar ao início
+      </a>
+    </div>
+
+
+  </section>
+
+</div>
+</body>
+</html>

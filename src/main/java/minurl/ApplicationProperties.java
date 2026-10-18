@@ -10,11 +10,6 @@ import org.springframework.validation.annotation.Validated;
 public record ApplicationProperties(
         @NotBlank
         String baseUrl,
-
-        @Min(1)
-        @Max(365)
-        int defaultExpiryInDays,
-
         boolean validateOriginalUrl
 ) {
 }

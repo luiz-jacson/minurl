@@ -1097,6 +1097,7 @@ body.minurl-body {
 .shortener-options {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
     gap: 16px;
     margin-top: 24px;
     padding-top: 22px;
@@ -2062,6 +2063,8 @@ body.minurl-body {
 
 .qr-option-button {
     position: relative;
+    align-self: start;
+    margin-bottom: 0;
     cursor: pointer;
 }
 
@@ -2126,6 +2129,63 @@ body.minurl-body {
 .qr-option-button {
     margin-bottom: 0;
 }
+
+/* Informação de expiração no modal */
+
+.result-expiration {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 12px;
+    padding: 11px 14px;
+
+    border: 1px solid #e3eaff;
+    border-radius: 10px;
+
+    color: var(--minurl-muted);
+    background: #f8faff;
+
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.result-expiration > i {
+    flex-shrink: 0;
+    color: var(--minurl-primary);
+    font-size: 17px;
+}
+
+
+/* Página de link expirado */
+
+.expired-icon {
+    color: #d97706;
+    background: #fff7e8;
+    border-color: #ffebc5;
+}
+
+.expired-label {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+
+    color: #d97706;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1;
+}
+
+@media (max-width: 575.98px) {
+    .expired-label {
+        right: 8px;
+        font-size: 28px;
+    }
+}
+
+
 
 
 

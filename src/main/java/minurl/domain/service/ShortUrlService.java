@@ -11,7 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,9 +43,6 @@ public class ShortUrlService {
             return Optional.empty();
         }
         ShortUrl shortUrl = shortUrlOptional.get();
-        if(shortUrl.getExpiresAt() != null && shortUrl.getExpiresAt().isBefore(Instant.now())) {
-            return Optional.empty();
-        }
         shortUrl.setClickCount(shortUrl.getClickCount()+1);
         shortUrlRepository.save(shortUrl);
         return shortUrlOptional.map(entityMapper::toShortUrlDto);
@@ -55,7 +55,7 @@ public class ShortUrlService {
         shortUrl.setCreatedBy(null);
         shortUrl.setIsPrivate(false);
         shortUrl.setClickCount(0L);
-        shortUrl.setExpiresAt(Instant.now().plus(properties.defaultExpiryInDays(), ChronoUnit.DAYS));
+        shortUrl.setExpiresAt(cmd.expiresAt() != null ? Instant.now().plus(ChronoUnit.DAYS.between(LocalDate.now(), cmd.expiresAt()), ChronoUnit.DAYS) : null);
         shortUrl.setCreatedAt(Instant.now());
         shortUrl.setShortKey("TEMP_");
         shortUrl = shortUrlRepository.saveAndFlush(shortUrl);

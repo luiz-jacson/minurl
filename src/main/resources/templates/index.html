@@ -147,17 +147,17 @@
                             aria-expanded="false"
                             aria-controls="expirationPanel">
 
-            <span class="option-icon">
-                <i class="bi bi-calendar-event" aria-hidden="true"></i>
-            </span>
+                        <span class="option-icon">
+                            <i class="bi bi-calendar-event" aria-hidden="true"></i>
+                        </span>
 
                         <span class="option-content">
-                <strong>Definir expiração</strong>
-            </span>
+                            <strong>Definir expiração</strong>
+                        </span>
 
                         <span class="option-chevron" aria-hidden="true">
-                <i class="bi bi-chevron-down"></i>
-            </span>
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
 
                     </button>
 
@@ -170,9 +170,8 @@
                         <input type="date"
                                id="expiresAt"
                                name="expiresAt"
-                               class="expiration-date">
-
-                        <small>Seu link poderá expirar na data escolhida.</small>
+                               class="expiration-date"
+                               th:field="*{expiresAt}">
                     </div>
 
                 </div>
@@ -239,6 +238,21 @@
 
                             <i class="bi bi-copy" aria-hidden="true"></i>
                         </button>
+
+                    </div>
+
+                    <div class="result-expiration"
+                         th:if="${expiryDays != null}">
+
+                        <i class="bi bi-clock-history"
+                           aria-hidden="true"></i>
+
+                        <span th:text="${
+                            expiryDays == 1
+                                ? 'Este link expira em 1 dia.'
+                                : 'Este link expira em ' + expiryDays + ' dias.'
+                            }">
+                        </span>
 
                     </div>
 

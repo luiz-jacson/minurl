@@ -2,7 +2,7 @@ package minurl.web.controllers;
 
 import jakarta.validation.Valid;
 import minurl.ApplicationProperties;
-import minurl.domain.exceptions.ShortUrlNotFoundException;
+import minurl.domain.exceptions.InvalidDateException;
 import minurl.domain.models.CreateShortUrl;
 import minurl.domain.models.ShortUrlDTO;
 import minurl.domain.service.ShortUrlService;
@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +39,7 @@ public class HomeController {
         List<ShortUrlDTO> shortUrls = shortUrlService.findAllPublicShortUrls();
         model.addAttribute("shortUrls", shortUrls);
         model.addAttribute("baseUrl", properties.baseUrl());
-        model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false));
+        model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false, null));
         model.addAttribute("activeHome", true);
         return "index";
     }
@@ -52,15 +55,28 @@ public class HomeController {
             model.addAttribute("baseUrl", properties.baseUrl());
             return "index";
         }
-
         try {
-            CreateShortUrl cmd = new CreateShortUrl(form.originalUrl());
+            if (form.expiresAt() != null && form.expiresAt().isBefore(LocalDate.now())) {
+                throw new InvalidDateException("A data escolhida já passou. Por favor, selecione o dia de hoje ou uma data futura.");
+            }
+            CreateShortUrl cmd = new CreateShortUrl(form.originalUrl(), form.expiresAt());
             var shortUrlDTO = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("shortUrl", properties.baseUrl()+"/s/"+shortUrlDTO.shortKey());
             redirectAttributes.addFlashAttribute("showQrCode", form.generateQrCode());
-        } catch (Exception e) {
+            if (form.expiresAt() != null) {
+                long expiryDays = ChronoUnit.DAYS.between(
+                        LocalDate.now(),
+                        form.expiresAt()
+                );
+                redirectAttributes.addFlashAttribute("expiryDays", expiryDays);
+            }
+        }
+        catch (InvalidDateException e){
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Falha ao encurtar URL");
-
+            System.out.println(e.getMessage());
         }
         return "redirect:/";
     }
@@ -70,6 +86,9 @@ public class HomeController {
         Optional<ShortUrlDTO> shortUrlDtoOptional = shortUrlService.findByShortKey(shortKey);
         if(shortUrlDtoOptional.isEmpty()) {
             return "redirect:/error/404.html";
+        }
+        if(shortUrlDtoOptional.get().expiresAt() != null && shortUrlDtoOptional.get().expiresAt().isBefore(Instant.now())){
+            return "expired";
         }
         ShortUrlDTO shortUrlDto = shortUrlDtoOptional.get();
         return "redirect:"+shortUrlDto.originalUrl();
