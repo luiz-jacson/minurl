@@ -3,6 +3,8 @@ package minurl.web.controllers;
 import jakarta.validation.Valid;
 import minurl.ApplicationProperties;
 import minurl.domain.exceptions.InvalidDateException;
+import minurl.domain.exceptions.SafeBrowsingUnavailableException;
+import minurl.domain.exceptions.UnsafeUrlException;
 import minurl.domain.models.CreateShortUrl;
 import minurl.domain.models.ShortUrlDTO;
 import minurl.domain.service.ShortUrlService;
@@ -68,6 +70,18 @@ public class HomeController {
                 );
                 redirectAttributes.addFlashAttribute("expiryDays", expiryDays);
             }
+        }
+        catch (UnsafeUrlException e) {
+            redirectAttributes.addFlashAttribute(
+                    "errorMessage",
+                    e.getMessage()
+            );
+        }
+        catch (SafeBrowsingUnavailableException e) {
+            redirectAttributes.addFlashAttribute(
+                    "errorMessage",
+                    e.getMessage()
+            );
         }
         catch (InvalidDateException e){
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());

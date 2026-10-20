@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 public record ApplicationProperties(
         @NotBlank
         String baseUrl,
-        boolean validateOriginalUrl
+        boolean validateOriginalUrl,
+        String safeBrowsingApiKey
 ) {
 }
