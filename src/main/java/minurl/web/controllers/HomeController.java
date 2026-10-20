@@ -37,8 +37,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model){
-        List<ShortUrlDTO> shortUrls = shortUrlService.findAllPublicShortUrls();
-        model.addAttribute("shortUrls", shortUrls);
         model.addAttribute("baseUrl", properties.baseUrl());
         model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false, null));
         model.addAttribute("activeHome", true);
@@ -51,9 +49,9 @@ public class HomeController {
                           RedirectAttributes redirectAttributes,
                           Model model) {
         if(bindingResult.hasErrors()) {
-            List<ShortUrlDTO> shortUrls = shortUrlService.findAllPublicShortUrls();
-            model.addAttribute("shortUrls", shortUrls);
             model.addAttribute("baseUrl", properties.baseUrl());
+            model.addAttribute("activeHome", true);
+            model.addAttribute("createShortUrlForm", form);
             return "index";
         }
         try {
@@ -104,6 +102,7 @@ public class HomeController {
 
     @GetMapping("/keepalive")
     public ResponseEntity<String> keepalive() {
+        Optional<ShortUrlDTO> shortUrlDtoOptional = shortUrlService.findByShortKey("1j");
         return ResponseEntity.ok("MinUrl is alive");
     }
 
