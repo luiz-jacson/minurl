@@ -43,7 +43,7 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/short-urls")
+    @PostMapping("/create-url")
     public String createShortUrl(@ModelAttribute("createShortUrlForm") @Valid CreateShortUrlForm form,
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes,
