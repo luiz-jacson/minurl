@@ -36,9 +36,8 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model model){
+    public String home(@ModelAttribute("createShortUrlForm") CreateShortUrlForm form, Model model){
         model.addAttribute("baseUrl", properties.baseUrl());
-        model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false, null));
         model.addAttribute("activeHome", true);
         return "index";
     }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public record CreateShortUrlForm(
-        @NotBlank(message = "Original URL is required")
+        @NotBlank(message = "É obrigatório preencher esse campo.")
         String originalUrl,
         Boolean generateQrCode,
         LocalDate expiresAt
