@@ -1,14 +1,10 @@
 package minurl.web.controllers;
 
-import jakarta.validation.Valid;
-import minurl.ApplicationProperties;
-import minurl.domain.exceptions.InvalidDateException;
-import minurl.domain.exceptions.SafeBrowsingUnavailableException;
-import minurl.domain.exceptions.UnsafeUrlException;
-import minurl.domain.models.CreateShortUrl;
-import minurl.domain.models.ShortUrlDTO;
-import minurl.domain.service.ShortUrlService;
-import minurl.web.dto.CreateShortUrlForm;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Optional;
+import jakarta.validation.Valid;
+import minurl.ApplicationProperties;
+import minurl.domain.exceptions.InvalidDateException;
+import minurl.domain.exceptions.SafeBrowsingUnavailableException;
+import minurl.domain.exceptions.UnsafeUrlException;
+import minurl.domain.models.CreateShortUrl;
+import minurl.domain.models.ShortUrlDTO;
+import minurl.domain.service.ShortUrlService;
+import minurl.web.dto.CreateShortUrlForm;
 
 @Controller
 public class HomeController {
@@ -38,7 +37,8 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(@ModelAttribute("createShortUrlForm") CreateShortUrlForm form, Model model){
+    public String home(Model model){
+        model.addAttribute("createShortUrlForm", new CreateShortUrlForm("", false, null));
         model.addAttribute("baseUrl", properties.baseUrl());
         model.addAttribute("activeHome", true);
         return "index";
@@ -71,20 +71,11 @@ public class HomeController {
                 redirectAttributes.addFlashAttribute("expiryDays", expiryDays);
             }
         }
-        catch (UnsafeUrlException e) {
+        catch (UnsafeUrlException | SafeBrowsingUnavailableException | InvalidDateException e) {
             redirectAttributes.addFlashAttribute(
                     "errorMessage",
                     e.getMessage()
             );
-        }
-        catch (SafeBrowsingUnavailableException e) {
-            redirectAttributes.addFlashAttribute(
-                    "errorMessage",
-                    e.getMessage()
-            );
-        }
-        catch (InvalidDateException e){
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Falha ao encurtar URL");
